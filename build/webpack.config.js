@@ -31,7 +31,6 @@ const config = {
                     fallback: "style-loader",
 			        use: ["css-loader", "sass-loader"]
                 })
-              
             }
         ]
     },
