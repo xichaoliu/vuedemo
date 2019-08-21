@@ -15,6 +15,5 @@ let vm = new Vue({
             <router-link to="/bar">Go to Bar</router-link>
             <button @click="$store.dispatch('increment')">按钮测试</button>
             <router-view></router-view>
-        </div>
-    `
+        </div> `
 })

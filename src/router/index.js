@@ -1,20 +1,20 @@
 import Vue from 'vue';
 import Router from "vue-router";
-import Foo from '../pages/foo';
-import Bar from '../pages/bar/Bar.vue';
+// import Foo from '../pages/foo';
+import Bar from '../pages/Bar/Bar.vue';
 Vue.use(Router);
 
 const routes = [
     { 
         path: '/foo/:id', 
         name: 'foo',
-        component: Foo , 
+        component: () => import('@/pages/foo') , 
         props: true
     },
     { 
         path: '/bar', 
         name: 'bar',
-        component: Bar 
+        component: () => import('@/pages/Bar/Bar.vue') 
     },
     // {
     //     path: '/*',

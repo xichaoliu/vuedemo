@@ -3,10 +3,16 @@ const  HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const ExtractPlugin = require('extract-text-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+
+function resolve (dir) {
+    return path.join(__dirname, '..', dir)
+  }
+
 const config = {
     entry: './src/main.js',
     output: {
         filename: 'main.[hash].js',
+        chunkFilename: '[name].bundle.js',
         path: path.join(__dirname, '../dist')
     },
     module: {
@@ -14,7 +20,13 @@ const config = {
             {
                 test: /\.js$/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: 'babel-loader',
+                    options: {
+                        'babelrc': false,
+                        'plugins': [
+                            "dynamic-import-webpack"
+                        ]
+                    }
                 }
             },
             {
@@ -32,7 +44,8 @@ const config = {
     },
     resolve: {
 		alias: {
-			vue: 'vue/dist/vue.js',
+            vue: 'vue/dist/vue.js',
+            '@': resolve('src')
 		}
 	},
     plugins: [
